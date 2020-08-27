@@ -22,13 +22,11 @@ public class CustomerServiceTest {
     @Test
     public void test_addCustomer(){
         Customer customer=new Customer();
-        customer.setId(1);
         customer.setName("Barac Bush");
         customer.setEmail("barac.bush@gmail.com");
         service.addCustomer(customer);
 
         Customer customer2=new Customer();
-        customer2.setId(2);
         customer2.setName("Tony Walker");
         customer2.setEmail("tony.walker@gmail.com");
         service.addCustomer(customer2);
@@ -37,7 +35,7 @@ public class CustomerServiceTest {
     @Test
     public void test_getCustomerById(){
         Customer customerById = service.getCustomerById(2);
-        assertEquals(customerById.getName(),"Tony Walker");
+        assertEquals(customerById.getName(),"Tony Walker1");
     }
 
     @Test
