@@ -1,11 +1,15 @@
 package com.learn.customerdata.service;
 
 import com.learn.customerdata.entities.Customer;
+import com.learn.customerdata.repos.CustomerRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,6 +18,10 @@ import static org.junit.Assert.assertEquals;
 public class CustomerServiceTest {
     @Autowired
     CustomerService service;
+
+    @Autowired
+    CustomerRepository repository;
+
     @Test
     public void contextLoad(){
 
@@ -50,6 +58,24 @@ public class CustomerServiceTest {
     @Test
     public void test_deleteCustomer(){
         service.deleteCustomer(1);
+    }
+
+    @Test
+    public void test_findByEmailAndName(){
+        List<Customer> customers = repository.findByEmailAndName("tony.walker1@gmail.com", "Tony Walker1");
+        customers.forEach(customer -> System.out.println(customer.getName()));
+    }
+
+    @Test
+    public void test_findByEmailIsLike(){
+        List<Customer> customers = repository.findByEmailIsLike("tony.walker1@gmail.com");
+        customers.forEach(customer -> System.out.println(customer.getName()));
+    }
+
+    @Test
+    public void test_findByIdIn(){
+        List<Customer> customers = repository.findByIdIn(Arrays.asList(4,5,6));
+        customers.forEach(customer -> System.out.println(customer.getName()));
     }
 
 
