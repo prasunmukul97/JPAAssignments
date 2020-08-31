@@ -6,10 +6,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
@@ -76,6 +79,15 @@ public class CustomerServiceTest {
     public void test_findByIdIn(){
         List<Customer> customers = repository.findByIdIn(Arrays.asList(4,5,6));
         customers.forEach(customer -> System.out.println(customer.getName()));
+    }
+
+    @Test
+    @Transactional
+    @Rollback(false)
+    public void test_updateCustomerEmail(){
+        repository.updateCustomerEmail(4,"prasun.saurabh123@gmail.com");
+        Optional<Customer> customer = repository.findById(4);
+        System.out.println(customer.get());
     }
 
 
