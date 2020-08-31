@@ -151,7 +151,7 @@ public class CustomerServiceTest {
     @Test
     public void test_findAllCustomers(){
         Pageable pageRequest= PageRequest.of(0,2);
-        List<Customer> customers = repository.findAllCustomers();
+        List<Customer> customers = repository.findAllCustomers(pageRequest);
         customers.forEach(customer -> System.out.println(customer.getName()));
     }
 
