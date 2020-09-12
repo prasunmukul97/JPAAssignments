@@ -15,4 +15,6 @@ public class Customer {
     private String name;
     @Column(name="email")
     private String email;
+    @Embedded
+    private Address address;
 }
